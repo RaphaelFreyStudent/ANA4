@@ -1,0 +1,111 @@
+\documentclass[ngerman]{report}
+
+\usepackage{../style}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\title{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen SS24}
+\author{Raphael Frey, Benni Kleisz}
+\institute{Universität Tübingen}
+\department{Mathematik}
+\date{\today}
+
+
+\fancypagestyle{myfancystyle}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \begin{minipage}{1em}
+        \rule[-1em]{1pt}{3em}
+    \end{minipage}
+    \begin{minipage}{\textwidth-2em}
+        \emph{Aufgaben Funktionentheorie und Gewöhnliche Differentialgleichungen}\\
+        \textbf{Sommersemester 2024 Blatt 4}\\
+        Raphael Frey, Benni Kleisz
+    \end{minipage}
+    }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\setlength{\headsep}{4em}
+\pagestyle{myfancystyle}
+
+\begin{document}
+\begin{question}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Seien $c>d>0$,$\gamma(t)=ce^{it}+de^{-it},t\in[0;2\pi]$. Berechnen Sie $\int_\gamma z^k dz$ für alle $k\in\Z$ (via
+        geeigneter Homotopie der Ellipse).
+        \item Zeigen Sie: Die Umfangsberechnung der Ellipse $E : \frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ führt zum vollständigen elliptischen Integrals 2. Gattung
+        \begin{align*}
+            \ell(E) &= \int_0^1 \sqrt{\frac{1-k^2x^2}{1-x^2}}dx \quad k^2= 1-\frac{b^2}{a^2}
+        \end{align*}
+    \end{enumerate}
+\end{question}
+\begin{answer}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Da $\gamma$ eine Ellipse ist, ist $\gamma$ homotop zu einem Kreis (mit radius $c+d$). Es folgt 
+        \begin{align*}
+            \int_\gamma z^k dz = \int_0^{2\pi} (c+d)^{k} e^{kit} \cdot i(c+d)e^{it} dt = \int_0^{2\pi} i(c+d)^{k+1}e^{i(k+1)t} dt = \begin{cases}
+                0 & k\neq -1\\
+                2\pi i & k = -1
+            \end{cases}
+        \end{align*}
+        \item Es Gilt mit $x = \cos  t \implies \frac{1}{  \sqrt{1-x^2}}dx = dt$
+        \begin{align*}
+            \ell(E) &= 4\int_0^{1} \abs{\gamma'(t)} dt\\
+            &= 4\int_0^{\frac{\pi}{2}} \sqrt{b^2\cos^2  t+a^2\sin^2 t}dt\\
+            &= 4\int_0^1 \frac{1}{ \sqrt{1-x^2}}\sqrt{b^2x^2 +a^2(1-x^2)}dx\\
+            &= 4a\int_0^1 \sqrt{1+\frac{b^2}{a^2}\frac{x^2}{1-x^2}}dx\\
+            &= 4a\int_0^1 \sqrt{\frac{1-x^2+\frac{b^2}{a^2}x^2}{1-x^2}}dx\\
+            &= 4a\int_0^1 \sqrt{\frac{1-k^2x^2}{1-x^2}}dx
+        \end{align*}
+    \end{enumerate}
+\end{answer}
+\newpage
+\begin{question}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Seien $\gamma_1,\tilde{\gamma}_1$ homotop von $o$ nach $p$, $\gamma_2,\tilde{\gamma}_2$ homotop von $p$ nach $q$. Zeigen Sie, dass $\gamma_2\gamma_1$ und $\tilde{\gamma}_2\tilde{\gamma}_1$ homotop sind.
+        \item Sei $p \in U = \C\setminus\{0,1\}$ fest. Sei $\gamma_0$ bzw. $\gamma_1$ der einfach geschlossene Weg von $p$ um $0$ bzw. $1$. Erläutern Sie, warum $\gamma^{-1}_0\gamma^{-1}_1\gamma_0\gamma_1$ nicht nullhomotop ist. Was bedeutet das für $\pi_1(\C\setminus\{0,1\})$?
+    \end{enumerate}
+    (Homotopie bei festen Enden. In 1.): Skizzen und formaler Beweis. In 2.): einleuchtende Skizzen mit Erkläuterung).
+\end{question}
+\begin{answer}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Es gilt mit
+        \begin{align*}
+            H = H_1H_2 \quad \text{punktweise in $s$ definiert}
+        \end{align*}
+    \end{enumerate}
+\end{answer}
+\newpage
+\begin{question}
+    Das Fadenpendel führt nach VL zum AWP
+    \begin{align*}
+        \ddot{\theta}+ \omega^2_0\sin\theta = 0 \quad \theta(0) = \theta_0, \quad \dot{\theta}(0) = 0
+    \end{align*}
+    Multiplizieren Sie die DGL mit $\dot{\theta}$ und integrieren Sie von $0$ bis $t$. Zeigen Sie dann mit TdV: $k := \sin \frac{\theta_0}{2}$ und $x := \frac{1}{k} \sin \theta$ führt zum (unvollständigen) elliptischen Integral 1. Gattung
+    \begin{align*}
+        t = -\frac{1}{\omega_0} \int_{x = 1}^x \frac{dx}{\sqrt{(1-x^2)(1-k^2x^2)}}
+    \end{align*}
+\end{question}
+\begin{answer}
+    Es gilt 
+    \begin{align*}
+        \dot{\theta}\ddot\theta + \omega^2_0 \dot\theta \sin\theta = 0 
+    \end{align*}
+    und nach $t$ integriert folgt
+    \begin{align*}
+        \int_0^t \dot\theta \ddot\theta dt  + \omega^2_0  \int_0^t\dot\theta \sin\theta dt = 0
+    \end{align*}
+    und durch substitution mit $u = -\frac{1}{k}\cos\theta \implies du = \frac{1}{k}\dot\theta \sin\theta dt$ und $k = \cos\theta_0$ folgt
+    \begin{align*}
+        \int_0^{\dot\theta(t)} d\dot\theta + \omega^2_0 k\int_{-1}^{-\frac{1}{k}\cos\theta} du= \dot\theta-\omega^2_0 (\cos\theta -k) = 0.
+    \end{align*}
+    Es folgt für den homogenen Teil
+    \begin{align*}
+        \dot\theta = \omega_0^2 \cos\theta \iff \int \frac{d\theta}{\cos\theta} = \int \omega_0^2 dt \iff \ln\abs{\tan \theta+\sec \theta} = \omega_0^2 t + C
+    \end{align*}
+    oder
+    \begin{align*}
+        \tan \theta + \sec \theta = \pm K e^{\omega_0^2 t}
+    \end{align*}
+\end{answer}
+\end{document}

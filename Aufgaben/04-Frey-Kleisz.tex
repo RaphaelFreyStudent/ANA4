@@ -1,0 +1,192 @@
+\documentclass[ngerman]{report}
+
+\usepackage{../style}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\title{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen SS24}
+\author{Raphael Frey, Benni Kleisz}
+\institute{Universität Tübingen}
+\department{Mathematik}
+\date{\today}
+
+
+\fancypagestyle{myfancystyle}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \begin{minipage}{1em}
+        \rule[-1em]{1pt}{3em}
+    \end{minipage}
+    \begin{minipage}{\textwidth-2em}
+        \emph{Aufgaben Funktionentheorie und Gewöhnliche Differentialgleichungen}\\
+        \textbf{Sommersemester 2024 Blatt 4}\\
+        Raphael Frey, Benni Kleisz
+    \end{minipage}
+    }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\setlength{\headsep}{4em}
+\pagestyle{myfancystyle}
+
+\begin{document}
+\begin{question}\hspace{\linewidth}\\
+    Erinnerung: $S \subset \C$ ist diskret, wenn zu jedem $s \in S$ ein $\delta > 0$ existiert, s.d. $S\cap D_\delta(s) = \{s\}$ (speziell $S = \emptyset$ ist diskret). Zeigen Sie:
+    \begin{enumerate}
+        \item Ist $P(z) = \sum_{k=0}^\infty c_k(z-p)^k$ nicht-konstant mit $R>0$ und $w \in \C$, so sind die Nullstellen von $P$ in $D_R(p)$ diskret und abgeschlossen.
+        \item Gilt 1.) für die $w$-Stellen (reellwertiger) $\mc{C}^\infty$-Funktionen auf Intervallen?
+        \item Wenn $K \subset \C$ kompakt und $S \subset \C$ diskret und abgeschlossen, dann ist $S \cap K$ endlich.
+    \end{enumerate}
+    Für $f:U\to \C$ und $w\in \C$ sind die $w-\text{Stellen}=\{z\in U: f(z)=w\}=f^{-1}(w)$.    
+\end{question}
+\begin{answer}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Da die Funktion eine Potenzreihe ist, ist sie Holomorph auf ihrem Konvergenzradius $R$. Es folgt, dass $P'(z)\neq 0$ in jedem Punkt, insbesondere in den Nullstellen oder
+        \begin{align*}
+            \lim_{h\to 0} \frac{f(z_0+h)-f(z_0)}{h} \neq 0
+        \end{align*}
+        Ist $S$ nicht diskret so existiert eine Folge $h_n\in \zeros(P)$ mit $h_n \to z_0$, daraus würde folgten
+        \begin{align*}
+            \lim_{n\to \infty} \frac{f(z_0+h_n)-f(z_0)}{h_n} = 0
+        \end{align*}
+        welches ein widerspruch wäre. Die abgeschlossenheit von $\zeros(P)$ ist klar, da $\zeros(P)$ keine Häufungspunke besitzt und somit keine konvergenten folgen besitzt (daher konverigiert jede konvergente folge in $S$ gegen einen Punkt in $S$).
+        \item Nein, man betrachte
+        \begin{align*}
+            f:[-2R,2R] \to [0,1]: x\mapsto \begin{cases}
+                0 & \abs{x}\geq R\\
+                \exp\left(\frac{1}{(x-R)^2}\right) & \abs{x}<R
+            \end{cases}
+        \end{align*}
+        dies ist $\mc{C}^\infty$ in $[-2R,2R]$, es gilt jedoch $\zeros(f) = [-2R,2R]\setminus(-R,R)$, welches nicht diskret ist.
+        \item Da $S$ und $K$ abgeschlossen sind, ist der Schnitt abgeschlossen und beschränkt und somit kompakt, und Jede offene Überdeckung besitzt eine endliche Teilüberdeckung. Da $S$ diskret ist, ist $S\cap K$ diskret. Wählt man $(D_{\delta_s})_{s\in K\cap S}$ als Teilüberdeckung, so existiert eine endliche Teilüberdeckung. Da aber die $D_{\delta_s}$ bijektiv auf die Punkte von $S\cap K$ abgebildet werden können, folgt die Endlichkeit von $S\cap K$.
+    \end{enumerate}
+\end{answer}
+\newpage
+\begin{question}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Berechnen Sie
+        \begin{align}
+            \int_{[-i,i]} z\cos z dz\label{eq:2-1}\\
+            \int_{\abs{z-p}=r} \Im z dz \label{eq:2-2}
+        \end{align}
+    
+        \item Seien $c>d>0$ reell,$\gamma(t)=ce^{it}+de^{-it}$ für $t\in [0;2\pi]$. Zeigen Sie,dass $\gamma$ die Punkte einer Ellipse parametrisiert und berechnen Sie
+        \begin{align}
+            \int_\gamma z^2 dz \label{eq:2-3} \\
+            \int_\gamma z e^{\pi z^2} dz \label{eq:2-4}
+        \end{align}
+        (Ellipse = Lösungsmenge von $\left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2 =1$ in $\R^2 \cong C$ für feste $a,b\in\R^+$)
+    \end{enumerate}
+\end{question}
+\begin{answer}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Es gilt 
+        \begin{align*}
+            \int_{[-i,i]} z\cos z dz &\overset{\text{def}}{=} \int_{-1}^1 ix\cos(ix)dx\\
+            &= i\int_{-1}^1 x \cosh(x)dx\\
+        \end{align*}
+        und als symmetrisches Integral über eine ungerade Funktion folgt 
+        \begin{align*}
+            \int_{[-i,i]} z\cos z dz = 0
+        \end{align*}
+        Für \cref{eq:2-2} gilt $p \mapsto (x,y)$
+        \begin{align*}
+            \int_{\abs{z-p}=r} \Im z dz &\overset{\text{def}}{=} \int_{-\pi}^{\pi} \Im(p+re^{it}) dt\\
+            &= \int_{-\pi}^{\pi} y+r\sin t dt\\
+            &= 2\pi y + \int_{-\pi}^{\pi} r\sin t dt
+        \end{align*}
+        und als symmetrisches Integral über eine ungerade Funktion folgt $\int_{-\pi}^{\pi} r\sin t dt = 0$ und somit
+        \begin{align*}
+            \int_{\abs{z-p}=r} \Im z dz = 2\pi y
+        \end{align*}
+        \item Es gilt 
+        \begin{align*}
+            x = \Re \gamma &= c\cos t+ d\cos t = (c+d)\cos t\\
+            y = \Im \gamma &= c\sin t- d\sin t = (c-d) \sin t
+        \end{align*}
+        mit $a = c+d$ und $b = c-d$ folgt nun
+        \begin{align*}
+            \left(\frac{x}{a}\right)^2 + \left(\frac{y}{b}\right)^2 = \cos^2t+\sin^2t=1.
+        \end{align*}
+        Es folgt also für die Integrale
+        \begin{align*}
+            \int_\gamma z^2 dz &= \int_0^{2\pi} (ce^{it}+de^{-it})^2 dt = \int_0^{2\pi} c^2e^{2it}+2cd+ d^2e^{-2it} dt = 4\pi cd
+        \end{align*}
+        und mit $F(z) = \frac{1}{2\pi} e^{\pi z^2}$ und $F' = f$ folgt
+        \begin{align*}
+            \int_\gamma z e^{\pi z^2} dz &= 0
+        \end{align*}
+    \end{enumerate}
+\end{answer}
+\newpage
+\begin{question}
+    Sei $\gamma: [0;1] \to \C$ eine hyperbolische Geodäte, d.h. eine $\mc{C}^2-\text{Kurve}$, die folgende
+    \begin{align*}
+        \gamma'' - \frac{2}{\gamma-\overline{\gamma}}(\gamma')^2=0
+    \end{align*}
+    DGL erfüllt: Schreiben Sie $\gamma(t)=x(t)+iy(t)$ und zeigen Sie:
+    \begin{enumerate}
+        \item $x'' - \frac{2x'y'}{y}=0$ und $y'' + \frac{(x')^2-(y')^2}{y} = 0$. Folgern Sie (Tipp: nach $t$ ableiten)
+        \begin{align}
+            \frac{1}{y^2}\left((x')^2+(y')^2\right) = c_0^2\label{eq:3-1}
+        \end{align}
+        \item $\frac{x'}{y^2} = c_1 \in \R$
+        \item Wenn $x' = 0$, dann verläuft $\gamma$ in einer Parallele zur Imaginärachse
+        \item Wenn $x'\neq 0$, dann $c_1\neq 0$.Setzt man $r:=\frac{c_0}{\abs{c_1}}$, dann $y^2\leq r^2$ und $(x')^2 = \frac{y^2(y')^2}{r^2-y^2}$. Folgern Sie: $\gamma$ verläuft in einem Kreis senkrecht auf der $\R$-Achse, d.h.
+        \begin{align*}
+            (x-m)^2+y^2=r^2 \;\text{für ein}\; m\in\R
+        \end{align*}
+        (Tipp: $\sqrt{r^2 - y^2}$ nach $t$ ableiten und mit $x'$ vergleichen).
+    \end{enumerate}
+\end{question}
+\begin{answer}
+    \begin{enumerate}
+        \item Es gilt
+        \begin{align*}
+            x''+iy'' - \frac{2}{x+iy-(x-iy)}(x'+iy')^2 =0
+        \end{align*}
+        oder durch trennen von Real- 
+        \begin{align*}
+            x'' - \frac{1}{y} 2x'y'= 0
+        \end{align*}
+        und Imaginärteil
+        \begin{align*}
+            y'' + \frac{1}{y} \left((x')^2-(y')^2\right) = 0.
+        \end{align*}
+        Es gilt
+        \begin{align*}
+            \pder{t}\left(\frac{1}{y^2}\left[(x')^2+(y')^2\right]\right) = y^{-2}\left[\left(2x'x''+2y'y''\right)-2y^{-1}y'\left((x')^2+(y')^2\right)\right]
+        \end{align*}
+        und durch einsetzen folgt
+        \begin{align*}
+            \pder{t}\left(\frac{1}{y^2}\left[(x')^2+(y')^2\right]\right) = y^{-2}\left[\left(2x'y^{-1} 2x'y'-2y'y^{-1} \left((x')^2-(y')^2\right)\right)-2y^{-1}y'\left((x')^2+(y')^2\right)\right]=0.
+        \end{align*}
+        Somit ist der Ausdruck konstant.
+        \item Es gilt
+        \begin{align*}
+            \pder{t}\left(\frac{x'}{y^2}\right) = \frac{y^2x''-2yx'y'}{y^4} = \frac{2x'y'y-2yx'y'}{y^4} = 0
+        \end{align*}
+        woraus folgt dass $\frac{x'}{y^2}$ konstant ist.
+        \item Es folgt aus \ref{eq:3-1}, mit $x' = 0$
+        \begin{align*}
+            y' = c_0y
+        \end{align*}
+        und somit gilt $\gamma:[0;1]\to \C: t \mapsto (k_1,k_2e^{c_0t})$ mit $k_1,k_2\in\R$. Es folgt, dass $\gamma$ in einer Parallele zur Imaginärachse verläuft.
+        \item Es gilt 
+        \begin{align*}
+            r^2 = \underbrace{\frac{(x')^2+(y')^2}{\abs{x'}^2}}_{\geq 1}\abs{y}^2\geq y^2
+        \end{align*}
+        und 
+        \begin{align*}
+            \frac{y^2(y')^2}{r^2-y^2} = \frac{y^2(y')^2}{\frac{(y')^2}{(x')^2}y^2} = (x')^2.
+        \end{align*}
+        Es gilt
+        \begin{align*}
+            \pder{t}\left(\sqrt{r^2-y^2}\right) = -\frac{y'y}{\sqrt{r^2-y^2}} = x'\implies x' = -\frac{y'y}{x}.
+        \end{align*}
+        Es folgt
+        \begin{align*}
+            r^2 = \frac{(x')^2+(y')^2}{x'^2} = y^2+\frac{(y')^2}{(x')^2}y^2 = y^2+x^2.
+        \end{align*}
+    \end{enumerate}
+\end{answer}
+\end{document}

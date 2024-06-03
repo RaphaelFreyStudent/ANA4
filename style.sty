@@ -1,0 +1,47 @@
+\ProvidesPackage{style}
+
+% Language setup
+\RequirePackage{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{csquotes}
+
+% Tikz
+\RequirePackage{tikz}
+\usetikzlibrary{tikzmark,calc}
+
+% Figures
+\RequirePackage{graphicx}
+\graphicspath{{./figures/}}
+
+% Index
+\RequirePackage{imakeidx}
+\makeindex
+
+
+% Misc commands
+
+\newenvironment{emphbox}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    { 
+    \\\\\hline
+    \end{tabular} 
+    \end{center}
+    }
+
+\RequirePackage{enumitem}
+\newcommand*{\rom}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+% Load other style sheets
+\RequirePackage{../.style/title-page}
+\RequirePackage{../.style/format}
+\RequirePackage{../.style/math}
+
+
+% Setup Font
+\usepackage[]{helvet} % or helvet
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\baselinestretch}{1.3} 
+

@@ -1,0 +1,225 @@
+\documentclass[ngerman]{report}
+
+\usepackage{../style}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\title{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen SS24}
+\author{Raphael Frey, Benni Kleisz}
+\institute{Universität Tübingen}
+\department{Mathematik}
+\date{\today}
+
+
+\fancypagestyle{myfancystyle}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \begin{minipage}{1em}
+        \rule[-1em]{1pt}{3em}
+    \end{minipage}
+    \begin{minipage}{\textwidth-2em}
+        \emph{Aufgaben Funktionentheorie und Gewöhnliche Differentialgleichungen}\\
+        \textbf{Sommersemester 2024 Blatt 2}\\
+        Raphael Frey, Benni Kleisz
+    \end{minipage}
+    }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\setlength{\headsep}{4em}
+\pagestyle{myfancystyle}
+
+\begin{document}
+    \begin{question} Entscheiden Sie jeweils mit den Cauchy-Riemann DGL bzw der Wirtinger-Ableitung über
+        Holomorphie auf $\C$ $(z=x+iy,x,y\in\R)$:
+        \begin{enumerate}
+            \item 
+            \begin{align*}
+                \mr{a)} \; f(z)=x^3-3xy^2+i(3x^2y-y^3), \quad \mr{b)}\;f(z)=z^2\overline{z}.
+            \end{align*}
+            (Anleitung:Koordinaten umschreiben mit $x=\frac{1}{2}(z+\overline{z})$, $y= \frac{1}{2i}(z-\overline{z})$ bzw. $z= x+iy$,$z=x-iy$, dann die partiellen Ableitungen bestimmen).
+            \item Sei $U=D_r(0)$ offene Kreisscheibe um $0$.Zeigen oder widerlegen Sie durch ein Gegenbeispiel:
+            \begin{enumerate}
+                \item Eine holomorphe Funktion $f \in \mc{O}(U)$, die nur reelle Werte annimmt, ist konstant.
+                \item Eine holomorphe Funktion $f \in \mc{O}(U)$, die keinen reellen Werte annimmt, ist konstant.
+            \end{enumerate}
+        \end{enumerate}
+    \end{question}
+    \begin{answer}
+        \begin{enumerate}
+            \item Mit der Wirtinger Ableitung:
+            \begin{enumerate}
+                \item             
+                \begin{align*}
+                    2\pder[f]{\overline{z}} = \pder[f]{x} + i\pder[f]{y} = (3x^2-3y^2+6ixy)+i(-6xy+i(3x^2-3y^2)) = 0 \implies f \text{ holomorph}
+                \end{align*}
+                \item 
+                \begin{align*}
+                    \pder[f]{\overline{z}} = z^2 \implies f \text{ nicht holomorph}
+                \end{align*}
+            \end{enumerate}
+            \item 
+            \begin{enumerate}
+                \item Sei $f \in \mc{O}(U)$ Reelwertig, und nicht konstant, also
+                \begin{align*}
+                    0\neq 2\pder[f]{z} = \pder[f]{x} - i\pder[f]{y}.
+                \end{align*}
+                Zudem da $f$ Holomorph gilt
+                \begin{align*}
+                    0 = 2\pder[f]{\overline{z}} = \pder[f]{x} + i\pder[f]{y}.
+                \end{align*}
+                Somit folgt
+                \begin{align*}
+                    \pder[f]{z} = \pder[f]{z}+ \pder[f]{\overline{z}} = \pder[f]{x}.
+                \end{align*}
+                Da die Funktion $f$ Reelwertig ist, folgt
+                \begin{align*}
+                    \pder[f]{y} = 0 \implies 2\pder[f]{z} = \pder[f]{x} \implies \pder[f]{x} = 0 \implies f \text{ konstant}
+                \end{align*}
+                \item $f(z) = z+2ir$ ist holomorph und nimmt auf $U$ keine reellen Werte an.
+            \end{enumerate}
+        \end{enumerate}
+    \end{answer}\newpage
+    \begin{question}
+        Sei $\mbb{H}=\{z \in \C | \Im z>0\}$ und 
+        \begin{align*}
+            A = \begin{pmatrix}
+                a & b\\
+                c & d
+            \end{pmatrix}\in\mr{SL}(2,\R).
+        \end{align*}
+        Zeigen Sie:
+        \begin{enumerate}
+            \item Wenn $z\in\mbb{H}$ ,dann $\gamma_A(z):=\frac{az+b}{cz+d} \in\mbb{H}$.
+            \item Wenn $A,B\in\mr{SL}(2,\R)$,dann $\gamma_{AB}=\gamma_A\circ\gamma_B$.
+            \item Für $A\in\mr{SL}(2,\R)$ ist $\gamma_A:\mbb{H}\to\mbb{H}$ biholomorph.
+            \item Bestimmen Sie alle $A$, s.d. $\gamma_A$ den Punkt $i \in \mbb{H}$ fixiert. Welche Gruppe bilden diese?
+        \end{enumerate}
+        \begin{note}
+            $z \mapsto az +b,a\overline{z} +b, a,b \in C,a \neq 0$, sind die Ähnlichkeiten ($\neq$ Isometrien) der euklidischen Ebene $\C$. Die $\gamma_A(z),\gamma_A(\overline{z})$ sind die Ähnlichkeiten (= Isometrien) der hyperbolischen Ebene $\mbb{H}$
+        \end{note}
+    \end{question}
+    \begin{answer}
+        \begin{enumerate}
+            \item Es gilt mit $z\in\mbb{H}$
+            \begin{align}
+                2i\Im \gamma_A(z) &=\frac{az+b}{cz+d}-\frac{a\overline{z}+b}{c\overline{z}+d}\nonumber \\
+                &= \frac{(az+b)(c\overline{z}+d)-(a\overline{z}+b)(cz+d)}{(cz+d)(c\overline{z}+d)}\nonumber\\ 
+                &= \frac{ac\overline{z}z+bc\overline{z}+adz+bd-acz\overline{z}-bcz-ad\overline{z}-bd}{\abs{cz+d}^2}\nonumber\\ 
+                &= \frac{bc(\overline{z}-z)-ad(\overline{z}-z)}{\abs{cz+d}^2} \nonumber\\
+                &= \underbrace{\frac{1}{\abs{cz+d}^2}}_{\in\R_{>0}}2i\Im z \implies \gamma_A(z) \in \mbb{H}\label{eq:2-1}
+            \end{align}
+            \item Es gilt
+            \begin{align*}
+                \begin{pmatrix}
+                    a_1 & b_1\\
+                    c_1 & d_1
+                \end{pmatrix}
+                \begin{pmatrix}
+                    a_2 & b_2\\
+                    c_2 & d_2
+                \end{pmatrix}
+                = \begin{pmatrix}
+                    a_1a_2+b_1c_2 & a_1b_2+b_1d_2\\
+                    c_1a_2+d_1c_2 & c_1b_2+d_1d_2
+                \end{pmatrix}
+            \end{align*}
+            und somit
+            \begin{align*}
+                \gamma_{AB}(z) = \frac{(a_1a_2+b_1c_2)z+(a_1b_2+b_1d_2)}{(c_1a_2+d_1c_2)z+(c_1b_2+d_1d_2)} = \gamma_A(\gamma_B(z))
+            \end{align*}
+            da
+            \begin{align*}
+                \gamma_A(\gamma_B(z)) = \frac{a_1\frac{a_2z+b_2}{c_2z+d_2}+b_1}{c_1\frac{a_2z+b_2}{c_2z+d_2}+d_1} = \frac{(a_1a_2+b_1c_2)z+(a_1b_2+b_1d_2)}{(c_1a_2+d_1c_2)z+(c_1b_2+d_1d_2)}.
+            \end{align*}
+            \item Es gilt offensichtlich 
+            \begin{align*}
+                \pder[f]{\overline{z}}=0 \implies f \text{ holomorph}
+            \end{align*}
+            und mit
+            \begin{align*}
+                \gamma_A^{-1}(z) = \frac{dz-b}{-cz+a}
+            \end{align*}
+            folgt
+            \begin{align*}
+                \gamma_A(\gamma_A^{-1}(z)) = \frac{a\frac{dz-b}{-cz+a}+b}{c\frac{dz-b}{-cz+a}+d} = z
+            \end{align*}
+            \item Es gilt $\gamma_A(i) = i$ genau dann, wenn
+            \begin{align*}
+                \frac{ai+b}{ci+d} = i \iff ai+b = -c+di \iff (a-d)i = c+b \iff a=d,b=-c
+            \end{align*}
+            also wenn $\{A|\gamma_A(i) = i\}\cap \mr{SL}(2,\R) = O(n,\R) \cong \partial D_1(0)$ mit dem Kanonischen isomorphismus aus Blatt 1 Aufgabe 1. Es folgt der Einheitskreis in $\C$.
+        \end{enumerate}
+    \end{answer}
+    \newpage
+    \begin{question}
+        Die Kurve $y : \R \to \R$ durch $(1 | 0)$ soll Strahlen parallel zur $y$-Achse in $(0 | 0)$ reflektieren. Zeigen Sie, dass $y(x)$ das AWP
+        \begin{align*}
+            y'(x) = \frac{y}{x} + \sqrt{1+\left(\frac{y}{x}\right)^2}, y(1) = 0
+        \end{align*}
+        erfüllt und lösen Sie es. Tipp: Mit
+        \begin{align*}
+            u = \begin{pmatrix}
+                1\\
+                y'
+            \end{pmatrix}
+            v = \begin{pmatrix}
+                x\\
+                y
+            \end{pmatrix}
+        \end{align*}
+        gilt 
+        \begin{align*}
+            \hat{u}\cdot \hat{v} = \hat{v} \cdot \hat{e}_2
+        \end{align*}
+    \end{question}
+    \begin{answer}
+        Es gilt aus der Beziehung ''Einfallswinkel gleich Ausfallswinkel'' mit Einfallswinkel
+        \begin{align*}
+            \cos\alpha = \hat{y}'\cdot \hat{e}_2 
+        \end{align*}
+        und Ausfallswinkel
+        \begin{align*}
+            \cos\alpha = \hat{y}\cdot \hat{x}
+        \end{align*}
+        dass
+        \begin{align*}
+            \hat{y}\cdot \hat{x} = \hat{y}'\cdot \hat{e}_2 
+        \end{align*}
+        somit erhält man die differenzialgleichung
+        \begin{align*}
+            \frac{1}{\sqrt{1+y'^2}\sqrt{x^2+y^2}}\begin{pmatrix}
+                1\\
+                y'
+            \end{pmatrix}\cdot \begin{pmatrix}
+                x\\
+                y
+            \end{pmatrix} = \frac{1}{\sqrt{1+y'^2}}\begin{pmatrix}
+                1\\
+                y'
+            \end{pmatrix}\cdot \begin{pmatrix}
+                0\\
+                1
+            \end{pmatrix}
+        \end{align*}
+        oder
+        \begin{align*}
+            \frac{x+y'y}{\sqrt{x^2+y^2}}  = y'\iff x+y'y = y'\sqrt{x^2+y^2} \iff y' = \frac{x}{\sqrt{x^2+y^2}-y} 
+        \end{align*}
+        und somit durch erweitern mit $\sqrt{x^2+y^2}+y$ erhält man
+        \begin{align*}
+            y' = \frac{y+\sqrt{x^2+y^2}}{x} = \frac{y}{x} + \sqrt{1+\left(\frac{y}{x}\right)^2}.
+        \end{align*}
+        Die Lösung der differenzialgleichung kann nun durch subsitution durch $z = \frac{y}{x}$ gelöst werden, also
+        \begin{align*}
+            \pder{z}{x} = \frac{y'x-y}{x^2} \lequiv y' = xz'+z
+        \end{align*}
+        und somit
+        \begin{align*}
+            xz'+z = z + \sqrt{1+z^2} \implies xz' = \sqrt{1+z^2} \implies \frac{z'}{\sqrt{1+z^2}} = \frac{1}{x} \xRightarrow[u = \arcsinh(x)]{\text{hyp. trig. subsitution}} \arcsinh(z) = \ln(x)+C
+        \end{align*}
+        Mit dem Anfangswert und der definition von $z$ folgt
+        \begin{align*}
+            y = x\sinh(\ln(x)+C) \xRightarrow{y(1) = 0} 0 = \sinh(C) \implies C = 0 \implies y = x\sinh(\ln(x)) = \frac{1}{2}(x^2-1) 
+        \end{align*}
+    \end{answer}
+\end{document}

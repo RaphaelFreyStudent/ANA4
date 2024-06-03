@@ -1,0 +1,63 @@
+\ProvidesPackage{format}
+
+
+% Page Formatting
+\RequirePackage{geometry}
+\geometry{a4paper, left=3cm,right=3cm,top=3cm,bottom=2cm}
+
+% Typesetting
+\RequirePackage{xcolor}
+\RequirePackage[most]{tcolorbox}
+
+
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkbordercolor = 0 0 0,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=blue,
+    pdftitle={DOTW},
+    pdfpagemode=FullScreen,
+}
+
+\RequirePackage[german]{cleveref}
+\urlstyle{same}    
+
+% Bibliography
+\RequirePackage[backend=biber,
+                style=authoryear-icomp,
+                sortlocale=de_DE,
+                natbib=true,
+                url=false, 
+                doi=true,
+                eprint=false]{biblatex}
+
+
+% Collaboration
+%\RequirePackage{comment}
+
+% Title Formatting
+\RequirePackage{titlesec}
+
+\titleformat{\chapter}
+  {\normalfont\huge\bfseries}{\arabic{chapter}}{1em}{}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\arabic{chapter}.\arabic{section}}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}{0.6em}{}
+
+
+% Create a fancy header which displays the title and author
+
+%\RequirePackage{subfigure}
+%\usepackage{float}
+
+\RequirePackage{booktabs}
+
+
+
+
+%

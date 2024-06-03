@@ -1,0 +1,114 @@
+\ProvidesPackage{math}
+
+\RequirePackage{amsthm,amssymb,amsmath,amsfonts}
+\RequirePackage{bbm}
+\RequirePackage{nicematrix}
+\RequirePackage{tensor}
+\RequirePackage{mathtools}
+
+% Theorems
+\RequirePackage{thmtools}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Satz}
+\newtheorem{example}{Beispiel}
+\newtheorem{note}{Bemerkung}
+\newtheorem{lemma}{Lemma}
+\newtheorem{question}{Frage}
+\newtheorem{answer}{Antwort}
+
+% Matricies
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+% Math Operators
+
+\DeclareMathOperator{\imat}{\mathbbm{1}}
+\DeclareMathOperator{\imatn}{\imat_n}
+\DeclareMathOperator{\id}{\text{id}}
+\DeclareMathOperator{\mat}{\text{Mat}}
+\DeclareMathOperator{\bild}{\text{Im}}
+\DeclareMathOperator{\im}{\text{Im}} % Imaginär, NICHT Bild!!
+\DeclareMathOperator{\eig}{\text{Eig}}
+\DeclareMathOperator{\gl}{\text{GL}}
+\DeclareMathOperator{\rng}{\text{rang}}
+\DeclareMathOperator{\sgn}{\text{sgn}}
+\DeclareMathOperator{\vol}{\text{vol}}
+\DeclareMathOperator{\Hom}{\text{Hom}}
+\DeclareMathOperator{\re}{\text{Re}}
+\DeclareMathOperator{\dif}{\text{d}}
+\DeclareMathOperator{\zeros}{\text{NS}} 
+
+
+% Math Fonts
+
+\newcommand\mc\mathcal
+\newcommand\mf\mathfrak
+\newcommand\mbb\mathbb
+\newcommand\mr\text
+
+% Useful Math Commands
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\S}{\mathbb{S}}
+
+\newcommand{\obda}{\text{O.E.}}
+\newcommand{\wied}{$\lightning$}
+
+\newcommand{\implied}{\Leftarrow}
+\newcommand{\lequiv}{\quad \iff \quad}
+\newcommand{\dequiv}{\quad :\iff \quad}
+\newcommand{\imps}{\quad \implies \quad}
+
+\newcommand{\Los}{\text{Lös}}
+\newcommand{\Rg}{\text{Rang}}
+
+\newcommand{\fol}[1]{(#1_n)_{n\in \mathbb{N}}}
+\newcommand{\seq}[1]{\left(#1\right)_{n\in \mathbb{N}}}
+
+\newcommand{\erz}[1]{\left\langle #1\right\rangle}
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\newcommand{\pder}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\der}[2][]{\frac{\dif #1}{\dif #2}}
+
+% Trig
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth} 
+
+% Units
+
+\RequirePackage{siunitx}
+\DeclareSIUnit{\velocity}{\meter\per\second}
+\DeclareSIUnit{\radian}{rad}
+\DeclareSIUnit\bar{bar}
+
+% Additional Packages
+\RequirePackage{tikz}
+\usetikzlibrary
+{circuits,circuits.ee.IEC}
+%\RequirePackage{circuitikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\RequirePackage{circuitikz}
+
+\RequirePackage{physics}

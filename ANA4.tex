@@ -1,0 +1,227 @@
+\documentclass[ngerman]{report}
+
+\usepackage{style}
+\usepackage{fancyhdr}
+
+
+\title{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen SS24}
+\author{Raphael Frey}
+\institute{Universität Tübingen}
+\department{Mathematik}
+\date{\today}
+\addbibresource{quellen.bib}
+
+
+\fancypagestyle{myfancystyle}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \begin{minipage}{1em}
+        \rule[-1em]{1pt}{3em}
+    \end{minipage}
+    \begin{minipage}{\textwidth-2em}
+        \emph{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen}\\
+        \textbf{Sommersemester 2024}\\
+        Raphael Frey
+    \end{minipage}
+    }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\setlength{\headsep}{4em}
+\pagestyle{myfancystyle}
+
+\begin{document}
+\maketitle%
+\tableofcontents%
+\chapter{Funktionentheorie}
+\section{Komplexe Differenzierbarkeit und Holomorphie}
+\subsection{Komplexe Differenzierbarkeit}
+Im folgenden $f:U\to\mbb{C}$ Funktion, $U\subset\mbb{C}$ offen. 
+\begin{align*}
+    f = u+iv, u = \Re(f), v = \Im(f)
+\end{align*}
+\begin{definition}[Komplexe Differenzierbarkeit]
+    $f$ heißt \emph{komplex differenzierbar}\index{komplex differenzierbar} in $z_0 \in U$, genau dann wenn 
+    \begin{align*}
+        f'(z_0) = \lim_{z\to z_0} \frac{f(z)-f(z_0)}{z-z_0}
+    \end{align*}
+    existiert.
+\end{definition}
+\begin{definition}[Holomorphie]
+    $f$ heißt \emph{holomorph}\index{holomorph} in $U$, wenn $f$ in jedem $z_0\in U$ komplex differenzierbar ist. $f$ ist in einem Punkt $z_0$ holomorph, wenn $f$ in einer Umgebung von $z_0$ holomorph ist.
+\end{definition}
+\begin{note}[Umformuliertung der Komplexen Differenzierbarkeit]
+    $f$ ist in $z_0$ komplex differenzierbar genau dann, wenn eine Umgebung $V = B_{\varepsilon}(z_0)$, eine komplexe Zahl $c\in \C$ und eine Funktion $\varphi: V\to \C\in o(h)$, so dass $\forall h\in \C$ mit $z_0+h\in V$ gilt
+    \begin{align*}
+        f(z_0+h) = f(z_0) + c\cdot h + \varphi(h).
+    \end{align*}
+\end{note}
+\begin{lemma}
+    Sind $f,g:U\to\C$ holomorph, dann sind auch $f+g, f\cdot g, f/g, f\circ g$ holomorph, mit den üblichen Rechenregeln.
+\end{lemma}
+\begin{lemma}[Holomorphe Funktionen bilden eine Algebra]
+    Die Holomorphen Funktionen auf $U$ 
+    \begin{align*}
+        \mc{O}(U) = \{f:U\to\C\mid f\;\text{holomorph}\}
+    \end{align*}   
+    bilden eine Algebra.     
+\end{lemma}
+\begin{example}
+    Polynome sind holomorph, auf $\C$, Rationale Funktionen $\frac{p}{q}$ sind holomorph mindestens auf $\C\setminus\{z\in\C\mid q(z) = 0\}$ (Siehe Riemannscher Fortsetzungssatz).
+\end{example}
+\begin{theorem}
+    Für $f\in \mc{O}(U)$ genau dann wenn die Cauchy-Riemannschen Differentialgleichungen gelten, und die Komponentenfunktionen reel differenzierbar sind. 
+    \begin{align*}
+        \pder[f]{\overline{z}} = 0
+    \end{align*}
+\end{theorem}
+\begin{theorem}
+    $f\in \mc{O}(U)$ genau dann, wenn $f$ beliebig oft differenzierbar, und die Ableitungen ebenfalls holomorph sind.
+\end{theorem}
+\begin{theorem}
+    $f\in \mc{O}(U)$ genau dann, wenn $f$ analytisch ist; d.h. $f$ lässt sich als Potenzreihe darstellen.
+\end{theorem}
+\begin{definition}
+    $f:U\to V$ heißt \emph{biholomorph}\index{biholomorph}, wenn $f$ bijektiv ist, und $f$ und $f^{-1}$ holomorph sind.
+\end{definition}
+\begin{definition}
+    $f:U\to\C$ heißt \emph{ganz}\index{ganz}, wenn $f$ auf ganz $\C$ holomorph ist.
+\end{definition}
+\subsection{Elementare Funktionen und $\ln$-Problem}
+Die Exponentialfunktion
+\begin{align*}
+    \exp(z) := \sum_{n=0}^\infty \frac{z^n}{n!} 
+\end{align*}
+ist eine ganze Funktion (sowohl wie $\sin$ und $\cos$). Es gilt weiterhin
+\begin{align*}
+    \exp(z+w) = \exp(z)\cdot \exp(w)
+\end{align*}
+und
+\begin{align*}
+    \exp(z) = \cos(z) + i\sin(z).
+\end{align*}
+Problematisch ist 
+\begin{align*}
+    \ln: \R_{>0}\to \R
+\end{align*}
+denn, jedes $z\in\C^\ast$ hat die Form 
+\begin{align*}
+    z = r\cdot \exp(i\varphi).
+\end{align*}
+Insbesondere $\exp:\C\to\C^\ast$ surjektiv, aber nicht injektiv. Dazu können rechenregeln von $\ln$ motiviert werden. 
+\begin{align*}
+    \ln(z) = \ln(r) + i\varphi
+\end{align*}
+Diese Funktion $\ln$ ist nicht wohldefiniertm weil $\varphi$ nur $\mod 2\pi$ definiert ist. Die Lösung des Problems ist festgelegt als 
+\begin{align*}
+    \varphi \in [-\pi,\pi) \quad (\arg z).
+\end{align*}
+Es folgt
+\begin{align*}
+    \ln:C^\ast \to \C: \ln r + i\varphi \quad \varphi \in [-\pi,\pi).
+\end{align*}
+Im algemeinen gilt nun
+\begin{align*}
+    \ln(z w) \neq \ln(z) + \ln(w)
+\end{align*}
+und der $\ln$ ist nicht stetig in $\R_{<0}$. Die Lösung des Problems ist $\ln$ auf $\C\setminus\R_{\leq 0}$ zu definieren
+\begin{definition}[$\C$-Logarithmus]
+    Der \emph{$\C$-Logarithmus}\index{$\C$-Logarithmus} ist definiert als
+    \begin{align*}
+        \ln:\C\setminus\R_{\leq 0}\to \C: z\mapsto \ln(z) = \ln\abs{z} + i\arg(z)
+    \end{align*}
+    wobei $\arg(z)\in (-\pi,\pi]$. Diese Funktion ist wohldefiniert, stetig und holomorph. Dies wird auch mit dem ''Hauptzweig'' des Logarithmus bezeichnet. Andere zweige werden durch änderungen des Winkelbereichs definiert (Ändert den Definitionsberreich).
+\end{definition}
+Das gleiche Problem existiert bei der Wurzelfunktion
+\begin{align*}
+    \sqrt[p]{\cdot}: \C\to\C: re^{i\varphi} \mapsto \sqrt[p]{r}e^{i\frac{\varphi}{p}}
+\end{align*}
+welche aufgrund des Winkels $\varphi$ nicht wohldefiniert ist.
+Wie zuvor wird wieder $\arg(z)\in (-\pi,\pi]$ definiert. Hier gilt die Rechenregel 
+\begin{align*}
+    \sqrt[p]{z w} \neq \sqrt[p]{z}\cdot \sqrt[p]{w}
+\end{align*}
+nicht. 
+\begin{definition}[$\C$-Wurzelfunktion]
+    Die \emph{$\C$-Wurzelfunktion}\index{$\C$-Wurzelfunktion} ist definiert als
+    \begin{align*}
+        \sqrt[p]{\cdot}:\C\to\C: z\mapsto \sqrt[p]{z} = \exp\left(\frac{\ln(z)}{p}\right)
+    \end{align*}
+    Diese Funktion ist wohldefiniert, stetig und holomorph.
+\end{definition}
+\subsection{Vergleich Komplexe und Reele Differenzierbarkeit und die Cauchy-Riemannschen Differentialgleichungen}
+\begin{definition}[Totale Differenzierbarkeit]
+    Eine Funktion $g:U\subset\R^m\to\R^n$ heißt \emph{total differenzierbar}\index{total differenzierbar}, wenn sie in jedem Punkt $z_0\in U$ differenzierbar ist, d.h. wenn eine lineare Abbildung $J:\R^m\to\R^n$, und eine Funktion $\varphi:V\subset U \to \R^n\in o(h)$  existiert, so dass
+    \begin{align*}
+        z(x_0+h) = g(x_0) + J(h) + \varphi(h)
+    \end{align*}
+    Es folgt, dass $g_i$ in $p$ partiell differenzierbar ist nach jedem $x_j$
+    \begin{align*}
+        J_{ab} = \pder[g_a]{x_b}
+    \end{align*}
+\end{definition}
+\begin{definition}[Wirtinger Ableitung]
+    Die Wirtinger Ableitung\index{Wirtinger Ableitung} (über das Differenzial von $f$ herzuleiten)
+    \begin{align*}
+        df = \frac{1}{2}(\partial_x-i\partial_y)dz + \frac{1}{2}(\partial_x+i\partial_y)d\overline{z}
+    \end{align*}
+    ist definiert als
+    \begin{align*}
+        \partial_z = \frac{1}{2}(\partial_x-i\partial_y)\quad\text{und}\quad \partial_{\overline{z}} = \frac{1}{2}(\partial_x+i\partial_y)
+    \end{align*}
+\end{definition}
+\begin{lemma}[Cauchy-Riemann Differentialgleichung] Genau dann ist eine Total-differenzierbare $f:U\to\C$ auf $U\in \mc{O}$ wenn $f$ reel differenzierbar und
+    \begin{align*}
+        \pder[f]{\overline{z}} = 0 
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Sei $z_0\in U$ und $f$ in $z_0$ komplex differenzierbar. Dann existiert eine lineare Abbildung $J:\C\to\C$ und eine Funktion $\psi:V\subset U\to \C\in o(h)$, so dass 
+    \begin{align*}
+        f(z_0+h) = f(z_0) + J(h) + \psi(h)
+    \end{align*}
+    wobei $J$ $\C$-linear sein muss. Daher folgt die Form
+    \begin{align*}
+        \begin{pmatrix}
+            \partial_x \Re f & \partial_x \Im f\\
+            \partial_y \Re f & \partial_y \Im f
+        \end{pmatrix} = \begin{pmatrix}
+            a & -b\\
+            b & a
+        \end{pmatrix}
+    \end{align*}
+    und somit
+    \begin{align*}
+        \pder[f]{\overline{z}} = 0
+    \end{align*}
+\end{proof}
+
+\chapter{Gewöhnliche Differentialgleichungen}
+\section{Grundbegriffe und Beispiele}
+\begin{definition}[Differentialgleichung]
+    Sei $\tilde{\Omega}\subset \R\times (\R^m)^{n+1}$ offen, $F:\Omega \to\R^k$ stetig. Dann heißt
+    \begin{align*}
+        F(t,y^{(0)},\ldots,y^{(n)}) = 0\quad (0\in \R^k)
+    \end{align*} 
+    \emph{gewöhnliche, implizite, $m$-dimensionale Differenzialgleichung}\index{gewöhnliche Differentialgleichung}. Eine Lösung auf dem Intervall $I\subset \R$ ist eine Funktion
+    \begin{align*}
+        y: I\to\R^m:(t,y^{(0)},\ldots,y^{(n)}) \in \mc{C}^n\quad\text{mit}\quad F(t,y^{(0)},\ldots,y^{(n)}) = 0 \quad \forall t\in I
+    \end{align*}
+\end{definition}
+\begin{definition}[Anfangswertproblem]
+    Ein \emph{Anfangswertproblem}\index{Anfangswertproblem} ist eine Problemstellung mit einer Differentialgleichung und anfangsbedingungen, welche durch feste anfangswerte gegeben sind.
+\end{definition}
+\begin{definition}[Ordnung der Differentialgleichung]
+    Die Höchste Ableitung $y^{(n)}$ gibt die \emph{Ordnung der Differentialgleichung}\index{Ordnung der Differentialgleichung} an (Differentialgleichung der Ordnung $n$)
+\end{definition}
+\begin{definition}[Autonome Differenzialgleichung]
+    Eine \emph{autonome Differentialgleichung}\index{autonome Differentialgleichung} ist eine Differentialgleichung $F$ hängt nicht von $t$ explizit ab
+\end{definition}
+\begin{definition}[Explizite Differentialgleichung]
+    Eine \emph{explizite Differentialgleichung}\index{explizite Differentialgleichung} heißt, dass die Differentialgleichung nach der höchsten Variable aufgelößt werden kann:
+    \begin{align*}
+        y^{(n)} = f(t,y^{(0)},\ldots,y^{(n-1)})
+    \end{align*}
+\end{definition}
+\printindex
+\end{document}

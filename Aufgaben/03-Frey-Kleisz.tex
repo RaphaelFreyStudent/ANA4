@@ -1,0 +1,74 @@
+\documentclass[ngerman]{report}
+
+\usepackage{../style}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\title{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen SS24}
+\author{Raphael Frey, Benni Kleisz}
+\institute{Universität Tübingen}
+\department{Mathematik}
+\date{\today}
+
+
+\fancypagestyle{myfancystyle}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \begin{minipage}{1em}
+        \rule[-1em]{1pt}{3em}
+    \end{minipage}
+    \begin{minipage}{\textwidth-2em}
+        \emph{Aufgaben Funktionentheorie und Gewöhnliche Differentialgleichungen}\\
+        \textbf{Sommersemester 2024 Blatt 2}\\
+        Raphael Frey, Benni Kleisz
+    \end{minipage}
+    }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\setlength{\headsep}{4em}
+\pagestyle{myfancystyle}
+
+\begin{document}
+\begin{question}\hspace{\linewidth}
+    \begin{enumerate}
+        \item Zeigen Sie: Wenn $\lim_{k\to\infty} \frac{c_k}{c_{k+1}}= R$ existiert, dann ist $R$ Konvergenzradius von $\sum_{k=0}^\infty c_k (z-p)^k$.
+        \item Bestimmen Sie den Konvergenzradius der Reihen
+        \begin{align*}
+            P_1(x) = \sum_{k=1}^\infty \ln(k)z^k \quad \text{und} \quad P_2(x) = \sum_{k=0}^\infty \frac{(2k)!}{2^k k!^2}
+        \end{align*}
+        \item Bestimmen Sie $d_1$,$d_2$,$d_3$ der formalen Potenzreihe $Q(z) \equiv \sum_{k=0}^\infty d_k z^k$ mit $Q(z) = e^z+z$ und $d_0 = 1$.
+    \end{enumerate}
+\end{question}
+\begin{answer}
+\end{answer}
+\newpage
+\begin{question}
+    Seien $P(z)=\sum^\infty_{k=0}c_zz^k,\; Q(z)=\sum^\infty_{k=0}d_kz^k$ Potenzreihen mit Konvergenzradien $R_P,R_Q > 0$.
+    \begin{enumerate}
+        \item Zeigen Sie: Konvergenzradius der Reihensumme und des Reihenprodukts ist $\geq \min\{R_P,R_Q\}$\label{it:2-1}
+        \item Zeigen oder widerlegen Sie (durch ein Gegenbeispiel), dass in \ref{it:2-1} Gleichheit gilt
+    \end{enumerate}
+\end{question}
+\begin{answer}
+\end{answer}
+\newpage
+\begin{question}
+    Gegeben sei das Polynom $p(T) = T^d +a_{d-1}T^{d-1} +\cdots+a_0 \in \R[T]$ und die DGL (linear homogen mit konst Koeff)
+    \begin{align*}
+        y^{(d)} + a_{d-1}y^{(d-1)} + \cdots + a_0y = 0
+    \end{align*}
+    Zeigen Sie:
+    \begin{enumerate}
+        \item $y(t)=e^{\alpha t}$ ($\alpha\in\C$) löst DGL $\iff p(\alpha)=0.$
+        \item  $\mbb{L}=\{y: \R\to\C \mid y \; d-\mr{mal diffbar und lost DGL}\}$ ist ein $\C$-Vektorraum (d.h. $y_1,y_2\in\mbb{L}\implies c_1y_1+c_2y_2\in\mbb{L}\forall c_1,c_2\in\C$). Dabei gilt:
+        \begin{align*}
+            \dim \mbb{L} \geq \mr{Anzahl paarweise verschiedener Nullstellen von $p$ in $\C$}.
+        \end{align*}
+        (Tipp: $\sum c_ke^{\alpha kt} \equiv 0\implies \sum c_k\alpha_k e^{\alpha kt} \equiv 0\implies\cdots.$ Sie dürfen die Vandermonde-Determinante verwenden).
+        \item $y(t)\in\mbb{L}\iff \Re y(t),\Im y(t)\in\mbb{L}$. Folgern Sie,dass es stets reellwertige Lösungen gibt.
+        \item Geben Sie eine solche DGL dritter Ordnung an mit $e^t,\sin t,\cos t\in\mbb{L}$
+    \end{enumerate}        
+\end{question}
+\begin{answer}
+\end{answer}
+\end{document}

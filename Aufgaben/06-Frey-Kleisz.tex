@@ -1,0 +1,90 @@
+\documentclass[ngerman]{report}
+
+\usepackage{../style}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\title{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen SS24}
+\author{Raphael Frey, Benni Kleisz}
+\institute{Universität Tübingen}
+\department{Mathematik}
+\date{\today}
+
+
+\fancypagestyle{myfancystyle}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \begin{minipage}{1em}
+        \rule[-1em]{1pt}{3em}
+    \end{minipage}
+    \begin{minipage}{\textwidth-2em}
+        \emph{Aufgaben Funktionentheorie und Gewöhnliche Differentialgleichungen}\\
+        \textbf{Sommersemester 2024 Blatt 6}\\
+        Raphael Frey, Benni Kleisz, Leonie
+    \end{minipage}
+    }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\setlength{\headsep}{4em}
+\pagestyle{myfancystyle}
+
+\begin{document}
+\setcounter{question}{1}
+\setcounter{answer}{1}
+\begin{question}
+    Betrachten Sie die auf $U = \C\setminus\{\pm i \}$ holomorphe Funktion:
+    \begin{align*}
+        f(z) = \frac{2z(z-1)^2}{z^2+1}
+    \end{align*}
+    \begin{enumerate}
+        \item Bestimmen Sie die Taylorreihen in $p = 1$ und zeigen Sie: Konvergenzradius $\geq \sqrt{2}$.
+        \item Berechnen Sie
+        \begin{align*}
+            \int_{\abs{z-1}=1} \frac{2z}{(z^2+1)(z-1)^2}\dd{z}
+        \end{align*}
+        \item Gibt es eine in einer Umgebung $D \subset U$ von $1$ holomorphe Funktion $h$ mit: $h^2 = f$ für $z \in D$? Mit: $h^3=f$ für $z\in D$?
+    \end{enumerate}
+\end{question}
+\begin{answer}
+    \begin{enumerate}
+        \item Es folgt mit Partialbruchzerlegung:
+        \begin{align*}
+            \frac{2z(z-1)^2}{z^2+1} = \frac{2z^3-4z^2+2z}{z^2+1} = 2z - 4 + \frac{4}{z^2+1} 
+        \end{align*}
+        \begin{align*}
+            \frac{4}{z^2+1} &= \frac{A}{z+i} + \frac{B}{z-i}\\
+            4 &= A(z-i) + B(z+i)\\
+            4 &= (A+B)z +i(B-A) \implies A+B = 0; \; B-A = -4i
+        \end{align*}
+        Es folgt $B = -2i$ und $A = 2i$. Also:
+        \begin{align*}
+            f(z) = 2z - 4 + 2i\varphi \;\text{mit}\;\varphi = \frac{1}{z-i} - \frac{1}{z+i}
+        \end{align*}
+        Durch Induktion erhält man
+        \begin{align*}
+            \partial^n_z \varphi(z) = n! \left(\frac{1}{(z-i)^{n+1}} - \frac{1}{(z+i)^{n+1}}\right)= n! \frac{(z+i)^{n+1}-(z-i)^{n+1}}{(z^2+1)^{n+1}}
+        \end{align*}
+        und dadurch folgt, an der $1$ ausgewertet
+        \begin{align*}
+            \partial^n_z \varphi(1) = n! \sqrt{2}^{-(n+1)}2i\sin\left(\frac{\pi}{4}(n+1)\right).
+        \end{align*}
+        Also folgt die Taylorreihe:
+        \begin{align*}
+            f(z) = -2 - \sqrt{2}4\sin\left(\frac{\pi}{4}\right)+\left(2-2\sin\left(\frac{\pi}{2}\right)\right)(z-1)+2i\sum_{n=2}^\infty \frac{\partial^n_z \varphi(1)}{n!}(z-1)^n.
+        \end{align*}
+        Der Konvergenzradius ist gegeben durch 
+        \begin{align*}
+            R^{-1} = \limsup_{n\to\infty} \sqrt[n]{\abs{\frac{\partial^n_z \varphi(1)}{n!}}} = \sqrt{2}^{-1}\limsup_{n\to\infty} \sqrt[n]{\sqrt{2}2\abs{\sin\left(\frac{\pi}{4}(n+1)\right)}} = \sqrt{2}^{-1}.
+        \end{align*}
+        \item Mithilfe des Caucy Integralsatzes folgt:
+        \begin{align*}
+            f^{(1)}(1) = \frac{1}{2\pi i}\oint_{\abs{z-1}=1} \frac{\frac{2z}{(z^2+1)}}{(z-1)^2}\dd{z} 
+        \end{align*}
+        wobei die obere Funktion $\frac{2z}{(z^2+1)}$ holomorph ist auf $\abs{z-1}<1$. Also folgt:
+        \begin{align*}
+            \oint_{\abs{z-1}=1} \frac{2z}{(z^2+1)(z-1)^2}\dd{z} = 2\pi i f^{(1)}(1) = 0
+        \end{align*}
+        \item Da $\sqrt{}$ nicht holomorph in der $0$ ist und $f(1) = 0$ folgt, dass es kein $h\in \mc{O}$ mit $h^2 = f$. Da $\sqrt[3]{}$ holormorph in der $0$, und $f(1) = 0$ folgt, dass die Komposition holomorpher Funktionen holomorph ist. Also existiert ein $h\in \mc{O}$ mit $h^3 = f$.
+    \end{enumerate}
+\end{answer}
+\end{document}

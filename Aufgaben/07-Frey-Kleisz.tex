@@ -1,0 +1,93 @@
+\documentclass[ngerman]{report}
+
+\usepackage{../style}
+\usepackage{fancyhdr}
+\usepackage{tikz-cd}
+\title{Einführung in die Funktionentheorie und Gewöhnliche Differentialgleichungen SS24}
+\author{Raphael Frey, Benni Kleisz}
+\institute{Universität Tübingen}
+\department{Mathematik}
+\date{\today}
+
+
+\fancypagestyle{myfancystyle}{
+  \fancyhf{}
+  \fancyhead[L]{
+    \begin{minipage}{1em}
+        \rule[-1em]{1pt}{3em}
+    \end{minipage}
+    \begin{minipage}{\textwidth-2em}
+        \emph{Aufgaben Funktionentheorie und Gewöhnliche Differentialgleichungen}\\
+        \textbf{Sommersemester 2024 Blatt 6}\\
+        Raphael Frey, Benni Kleisz, Leonie Kempf
+    \end{minipage}
+    }
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\setlength{\headsep}{4em}
+\pagestyle{myfancystyle}
+
+\begin{document}
+\setcounter{question}{1}
+\setcounter{answer}{1}
+\begin{question}
+    Sei $U \subset \mathbb{C}$ offen, $h : U \to \mathbb{C}$ sei 2-mal stetig partiell differenzierbar nach $x$ und nach $y$. Erinnerung: $h$ ist harmonisch, wenn mit dem Laplace-Operator $\laplace := \pdv[2]{x} + \pdv[2]{y}$ gilt: $\laplace h = 0$. Zeigen Sie:
+\begin{enumerate}
+    \item Für jedes 2-mal stetig partiell differenzierbare $h$
+    \begin{align*}
+        \overline{\pdv{h}{z}} = \pdv{\bar{h}}{\bar{z}} \quad \text{und} \quad \overline{\pdv{h}{\bar{z}}} = \pdv{\bar{h}}{z} \quad \text{und}\quad \laplace h = 4 \pdv{z \partial \bar{z}} h = 4 \frac{\partial^2}{\partial \bar{z} \partial z} h
+    \end{align*}
+    (mit $ \pdv{z} = \frac{1}{2} \left( \pdv{x} - i \pdv{y} \right) $ und $ \pdv{\bar{z}} = \frac{1}{2} \left( \pdv{x} + i \pdv{y} \right) $ und Ansatz $ h = u + iv $. Diffquotient o.Ä. nicht nötig).
+    
+    \item Wenn $ f \in \mc{O}(U) $, dann ist $ f $ harmonisch. Wann ist $ \overline{f} $ (bzw. $ \Re f $ bzw. $ \Im f $) holomorph?
+    \item Wenn $ h $ harmonisch auf $ U $, dann sind $ h, \Re h, \Im h $ harmonisch. Ist $ h $ stets holomorph?
+    \item Wenn $ h $ harmonisch auf $ U $ und $ U $ einfach zusammenhängend, dann $ h = f + \overline{g} $ für $ f, g \in \mc{O}(U) $. Wenn $ h $ reellwertig, dann $ h = \Re f $ für ein $ f \in \mc{O}(U) $.
+    \item Ein auf $ U $ harmonisches $ h $ genügt der Mittelwerteigenschaft
+    \[
+    h(p) = \frac{1}{2\pi} \int_0^{2\pi} h(p + re^{it}) \, dt \quad (\overline{D_r(p)} \subset U).
+    \]
+    (vgl. Bemerkung zu Cauchys Integralformel).
+    
+    (Bem: Wegen 4. $ h $ harmonisch $\Rightarrow h \in C^\infty $ und analytisch, lokal $ \sum c_k (z - p)^k + \sum d_k (z - p)^k $. Aufwändiger: $ h : U \to \mathbb{C} $ Mittelwerteigenschaft $\Rightarrow h $ harmonisch. Viele Anwendungen in Physik, bei partiellen DGL).
+\end{enumerate}
+\end{question}
+\begin{answer}
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+        \item Nach Aufgabenteil 1 gilt
+        \begin{align*}
+            0 = \laplace h \implies \pder[h]{z} \;\text{holomorph}.
+        \end{align*}
+        Da $U$ einfach zusammenhängend ist, ist die Stammfunktion ($=h$ bis auf eine Konstante o.B.d.A. zu $h$ über hilfsfunktion umzuschreiben) auch holomorph. Es folgt, dass $h$ holomorph ist....??? (keine Ahnung was hier falsch läuft)
+        \item 
+    \end{enumerate}
+\end{answer}
+\newpage
+\begin{question}
+    Nach VL (Bsp. 1.4) ist das AWP
+    \begin{align*}
+        y' = \sqrt{\abs{y}}\\
+        y(0) = 0
+    \end{align*}
+    nicht eindeutig lösbar. Welche Lösung wird durch den Satz von Peano gefunden? Begründen Sie Ihre Antwort. Zeigen Sie, dass $f (y) = \sqrt{|y|}$ in keiner Umgebung von $y = 0$ Lipschitz-stetig ist.
+\end{question}
+\begin{answer}
+    O.B.d.A. Sei die Umgebung durch ein Intervall $I$ gegeben. Auf $I\setminus\{0\}$ ist $f$ stetig differenzierbar mit 
+    \begin{align*}
+        f'(y) = \frac{1}{2\sqrt{|y|}}.
+    \end{align*}
+    Falls $f$ stetig differenzierbar (auf einer dichten Teilmenge) ist, so gilt für die Lipschitz-Konstante
+    \begin{align*}
+        L \geq \sup_{y\in I} \abs{f'(y)} = \infty.
+    \end{align*}
+    Also ist $f$ nicht Lipschitz-stetig. Der Satz von Peano besagt, dass eine Lösung existiert, welche mithilfe des Eulerverfahrens gefunden werden kann. Es gilt 
+    \begin{align*}
+        y(t+h) = y(t) + h f'(y(t)) + \mathcal{O}(h^2).
+    \end{align*}
+    mit $t_0 = 0$ gilt
+    \begin{align*}
+        y(h) = h f'(0) = h\cdot 0 = 0.
+    \end{align*} 
+\end{answer}
+\end{document}
